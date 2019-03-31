@@ -1,0 +1,25 @@
+{
+  "name": "Liri",
+  "version": "1.0.0",
+  "description": "siri type node js bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DavidLawrence1985/Liri.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DavidLawrence1985/Liri/issues"
+  },
+  "homepage": "https://github.com/DavidLawrence1985/Liri#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "dotenv": "^7.0.0",
+    "moment": "^2.24.0"
+  }
+}
