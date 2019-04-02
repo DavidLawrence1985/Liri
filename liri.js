@@ -12,7 +12,7 @@ var axios = require("axios");
 var action = process.argv[2]
 var request = process.argv.slice(3).join(" ");
 var results;
-
+var dataArr;
 
 switch (action) {
     case "movie-this":
@@ -25,6 +25,10 @@ switch (action) {
 
       case "spotify-this-song":
       song();
+      break;
+
+      case "do-what-it-says":
+      doWhat();
       break;
     
 }
@@ -66,7 +70,7 @@ function concert(){
         function(response){
              
             results = response.data;     
-            if(results === true){
+            if(results){
                 for(var i = 0; i < results.length; i++){
                     console.log("\r\n____________________________________________________________________");
                     console.log("\r\nvenue: " + results[i].venue.name);
@@ -81,24 +85,22 @@ function concert(){
 
 
 function song(){
-//     Artist(s)
-// The song's name
-// A preview link of the song from Spotify
-// The album that the song is from
+
 spotify.search({ type: 'track', query: request, limit:10}, function(err, data) {
+    var song = data.tracks.items;
+    for(var i = 0; i < song.length; i++){
     if (err) {
       return console.log('Error occurred: ' + err);
     }
     
-    var song = data.tracks;
     if(song){
-    console.log("========================================")
-    console.log("Album: " + song.items[0].album.name);
-    console.log("Artist: " + song.items[0].album.artists[0].name);
-    console.log("Song: " + song.items[0].name);
-    console.log("Spotify link: " + song.items[0].album.external_urls.spotify);
-    console.log("========================================")
- }
+        console.log("______________________________________________________________________________\r\n")
+        console.log("Artist: " + song[i].album.artists[0].name);
+        console.log("Song: " + song[i].name);
+        console.log("Album: " + song[i].album.name);
+        console.log("Spotify link: " + song[i].album.external_urls.spotify);    
+    }
+ 
  else{
      console.log("no song")
  }
@@ -106,16 +108,22 @@ spotify.search({ type: 'track', query: request, limit:10}, function(err, data) {
 // console.log(song)
 
     
-  });
-    // spotify.search({ type: 'track', query: request, limit: 5 })
-    // .then(function(response) {
-    //     console.log(response.tracks.name);
-    //     console.log(response.tracks.album);
-    //     console.log(response.tracks.artists);
-    //     // console.log(response.tracks.items);
-    // })
-    // .catch(function(err) {
-    //     console.log(err);
-    // });
-}
+  }})};
+    
+function doWhat(){
+
+    fs.readFile("random.txt", "utf8", function(error, data) {
+
+        
+        if (error) {
+          return console.log(error);
+        }
+      
+        console.log(data)
+        dataArr = data.split(",");
+        // console.log(dataArr);
+             });
+      
+ } 
+
 
