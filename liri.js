@@ -71,14 +71,47 @@ function concert(request){
              
             results = response.data;     
             if(results){
+                fs.appendFile("log.txt", "\r\n*************** concert-this : " + request , function(err) {
+
+                    if (err) {
+                    console.log(err);
+                    }
+                    else {
+                    // console.log("Content Added!");
+                    }
+                })
+
                 for(var i = 0; i < results.length; i++){
-                    console.log("\r\n____________________________________________________________________");
-                    console.log("\r\nvenue: " + results[i].venue.name);
-                    console.log("\r\nlocation: " + results[i].venue.city + "," + results[i].venue.region + " " + results[i].venue.country);
-                    console.log("\r\nDate: " + moment(results[i].datetime).format("MM/DD/YYYY"));        
+                    var line = "\r\n____________________________________________________________________"
+                    var venue = "\r\nvenue: " + results[i].venue.name;
+                    var location = "\r\nlocation: " + results[i].venue.city + "," + results[i].venue.region + " " + results[i].venue.country;
+                    var date = "\r\nDate: " + moment(results[i].datetime).format("MM/DD/YYYY");
+                    
+                    console.log(line)
+                    console.log(venue)
+                    console.log(location)
+                    console.log(date)
+                        fs.appendFile("log.txt", "\r\n" + line + "\r\n" + venue + "\r\n" + location + "\r\n" + date , function(err) {
+
+                            if (err) {
+                            console.log(err);
+                            }
+                            else {
+                            // console.log("Content Added!");
+                            }
+                    
+                        // console.log("\r\n____________________________________________________________________");
+                        // console.log("\r\nvenue: " + results[i].venue.name);
+                        // console.log("\r\nlocation: " + results[i].venue.city + "," + results[i].venue.region + " " + results[i].venue.country);
+                        // console.log("\r\nDate: " + moment(results[i].datetime).format("MM/DD/YYYY"));   
+
+                        })
                 }}
-                else{
-                    console.log("Sorry, no current dates scheduled.")
+                
+                else {
+                    var sorry = "Sorry, no current dates scheduled."
+                    // console.log("Sorry, no current dates scheduled.")
+                    console.log(sorry)
                 }
         }
     )}
@@ -121,7 +154,7 @@ function doWhat(){
       
         // console.log(data) 
         dataArr = data.split(",");
-        console.log(dataArr);
+        // console.log(dataArr);
         if(dataArr[0] === "spotify-this-song"){
             song(dataArr[1]);
 
