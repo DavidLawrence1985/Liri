@@ -37,14 +37,33 @@ function movie(request){
     axios.get("http://www.omdbapi.com/?t=" + request + "&y=&plot=short&apikey=trilogy").then(
         function(response) {
         if(request){
-            console.log("\r\nMovie Title: " + response.data.Title);
-            console.log("\r\nYear released: " + response.data.Year);
-            console.log("\r\nRated: " + response.data.Rated);
-            console.log("\r\nRotten Tomatoes rating: " + response.data.Ratings[1].Value);
-            console.log("\r\nCountry of production: " + response.data.Country);
-            console.log("\r\nLanguage: " + response.data.Language);
-            console.log("\r\nPlot: " + response.data.Plot);
-            console.log("\r\nCast: " +  response.data.Actors);
+            
+            var movieTitle = "\r\nMovie Title: " + response.data.Title;
+            var yearReleased = "\r\nYear released: " + response.data.Year;
+            var rated = "\r\nRated: " + response.data.Rated;
+            var rottenTom = "\r\nRotten Tomatoes rating: " + response.data.Ratings[1].Value;
+            var country = "\r\nCountry of production: " + response.data.Country;
+            var language = "\r\nLanguage: " + response.data.Language;
+            var plot = "\r\nPlot: " + response.data.Plot;
+            var cast = "\r\nCast: " +  response.data.Actors;
+
+            console.log(movieTitle);
+            console.log(yearReleased);
+            console.log(rated);
+            console.log(rottenTom);
+            console.log(country);
+            console.log(language);
+            console.log(plot);
+            console.log(cast);
+
+            // console.log("\r\nMovie Title: " + response.data.Title);
+            // console.log("\r\nYear released: " + response.data.Year);
+            // console.log("\r\nRated: " + response.data.Rated);
+            // console.log("\r\nRotten Tomatoes rating: " + response.data.Ratings[1].Value);
+            // console.log("\r\nCountry of production: " + response.data.Country);
+            // console.log("\r\nLanguage: " + response.data.Language);
+            // console.log("\r\nPlot: " + response.data.Plot);
+            // console.log("\r\nCast: " +  response.data.Actors);
     }
     else {
         console.log("No movie requested...\r\nSample")  
@@ -99,18 +118,11 @@ function concert(request){
                             else {
                             // console.log("Content Added!");
                             }
-                    
-                        // console.log("\r\n____________________________________________________________________");
-                        // console.log("\r\nvenue: " + results[i].venue.name);
-                        // console.log("\r\nlocation: " + results[i].venue.city + "," + results[i].venue.region + " " + results[i].venue.country);
-                        // console.log("\r\nDate: " + moment(results[i].datetime).format("MM/DD/YYYY"));   
-
                         })
                 }}
                 
                 else {
                     var sorry = "Sorry, no current dates scheduled."
-                    // console.log("Sorry, no current dates scheduled.")
                     console.log(sorry)
                 }
         }
