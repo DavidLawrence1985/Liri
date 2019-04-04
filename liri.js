@@ -16,15 +16,15 @@ var dataArr;
 
 switch (action) {
     case "movie-this":
-      movie();
+      movie(request);
       break;
     
       case "concert-this":
-      concert();
+      concert(request);
       break;
 
       case "spotify-this-song":
-      song();
+      song(request);
       break;
 
       case "do-what-it-says":
@@ -33,7 +33,7 @@ switch (action) {
     
 }
 
-function movie(){
+function movie(request){
     axios.get("http://www.omdbapi.com/?t=" + request + "&y=&plot=short&apikey=trilogy").then(
         function(response) {
         if(request){
@@ -64,7 +64,7 @@ function movie(){
     }
     )}
 
-function concert(){
+function concert(request){
     
     axios.get("https://rest.bandsintown.com/artists/" + request +"/events?app_id=codingbootcamp ").then(
         function(response){
@@ -84,9 +84,9 @@ function concert(){
     )}
 
 
-function song(){
+function song(request){
 
-spotify.search({ type: 'track', query: request, limit:10}, function(err, data) {
+spotify.search({ type: 'track', query: request, limit:5}, function(err, data) {
     var song = data.tracks.items;
     for(var i = 0; i < song.length; i++){
     if (err) {
@@ -119,10 +119,23 @@ function doWhat(){
           return console.log(error);
         }
       
-        console.log(data)
+        // console.log(data) 
         dataArr = data.split(",");
-        // console.log(dataArr);
+        console.log(dataArr);
+        if(dataArr[0] === "spotify-this-song"){
+            song(dataArr[1]);
+
+        }
+        if(dataArr[0] === "movie-this"){
+            movie(dataArr[1]);
+        }
+        if(dataArr[0] === "concert-this"){
+            
+            concert(dataArr[1]);
+        }
+
              });
+        
       
  } 
 
