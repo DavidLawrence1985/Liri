@@ -37,7 +37,7 @@ function movie(request){
     axios.get("http://www.omdbapi.com/?t=" + request + "&y=&plot=short&apikey=trilogy").then(
         function(response) {
         if(request){
-            
+
             var movieTitle = "\r\nMovie Title: " + response.data.Title;
             var yearReleased = "\r\nYear released: " + response.data.Year;
             var rated = "\r\nRated: " + response.data.Rated;
@@ -46,6 +46,19 @@ function movie(request){
             var language = "\r\nLanguage: " + response.data.Language;
             var plot = "\r\nPlot: " + response.data.Plot;
             var cast = "\r\nCast: " +  response.data.Actors;
+
+            fs.appendFile("log.txt", "\r\n***************concert-this****************** : " + request + "\r\n" + movieTitle + 
+                yearReleased + rated + rottenTom + country + language + plot + cast, function(err) {
+
+
+                if (err) {
+                console.log(err);
+                }
+                else {
+                // console.log("Content Added!");
+                }
+            })
+            
 
             console.log(movieTitle);
             console.log(yearReleased);
@@ -56,14 +69,7 @@ function movie(request){
             console.log(plot);
             console.log(cast);
 
-            // console.log("\r\nMovie Title: " + response.data.Title);
-            // console.log("\r\nYear released: " + response.data.Year);
-            // console.log("\r\nRated: " + response.data.Rated);
-            // console.log("\r\nRotten Tomatoes rating: " + response.data.Ratings[1].Value);
-            // console.log("\r\nCountry of production: " + response.data.Country);
-            // console.log("\r\nLanguage: " + response.data.Language);
-            // console.log("\r\nPlot: " + response.data.Plot);
-            // console.log("\r\nCast: " +  response.data.Actors);
+         
     }
     else {
         console.log("No movie requested...\r\nSample")  
@@ -90,7 +96,7 @@ function concert(request){
              
             results = response.data;     
             if(results){
-                fs.appendFile("log.txt", "\r\n*************** concert-this : " + request , function(err) {
+                fs.appendFile("log.txt", "\r\n***************concert-this******************* : " + request , function(err) {
 
                     if (err) {
                     console.log(err);
@@ -139,11 +145,38 @@ spotify.search({ type: 'track', query: request, limit:5}, function(err, data) {
     }
     
     if(song){
-        console.log("______________________________________________________________________________\r\n")
-        console.log("Artist: " + song[i].album.artists[0].name);
-        console.log("Song: " + song[i].name);
-        console.log("Album: " + song[i].album.name);
-        console.log("Spotify link: " + song[i].album.external_urls.spotify);    
+        fs.appendFile("log.txt", "\r\n***************spotify-this******************* : " + request , function(err) {
+
+            if (err) {
+            console.log(err);
+            }
+            else {
+            // console.log("Content Added!");
+            }
+        })
+
+        var line = "______________________________________________________________________________\r\n"
+        var artist = "Artist: " + song[i].album.artists[0].name;
+        var searchSong = "Song: " + song[i].name;
+        var album = "Album: " + song[i].album.name;
+        var spotify = "Spotify link: " + song[i].album.external_urls.spotify;
+
+        fs.appendFile("log.txt", "\r\n" + line + "\r\n" + artist + "\r\n" + searchSong + "\r\n" + album + "\r\n" + spotify , function(err) {
+
+            if (err) {
+            console.log(err);
+            }
+            else {
+            // console.log("Content Added!");
+            }
+        })
+        
+
+        console.log(line);
+        console.log(artist);
+        console.log(searchSong);
+        console.log(album);
+        console.log(spotify);
     }
  
  else{
