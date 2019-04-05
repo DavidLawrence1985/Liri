@@ -48,7 +48,7 @@ function movie(request){
             var cast = "\r\nCast: " +  response.data.Actors;
 
             fs.appendFile("log.txt", "\r\n***************concert-this****************** : " + request + "\r\n" + movieTitle + 
-                yearReleased + rated + rottenTom + country + language + plot + cast, function(err) {
+                yearReleased + rated + rottenTom + country + language + plot + cast + "\r\n", function(err) {
 
 
                 if (err) {
@@ -116,7 +116,7 @@ function concert(request){
                     console.log(venue)
                     console.log(location)
                     console.log(date)
-                        fs.appendFile("log.txt", "\r\n" + line + "\r\n" + venue + "\r\n" + location + "\r\n" + date , function(err) {
+                        fs.appendFile("log.txt", "\r\n" + line + "\r\n" + venue + "\r\n" + location + "\r\n" + date + "\r\n", function(err) {
 
                             if (err) {
                             console.log(err);
@@ -161,7 +161,7 @@ spotify.search({ type: 'track', query: request, limit:5}, function(err, data) {
         var album = "Album: " + song[i].album.name;
         var spotify = "Spotify link: " + song[i].album.external_urls.spotify;
 
-        fs.appendFile("log.txt", "\r\n" + line + "\r\n" + artist + "\r\n" + searchSong + "\r\n" + album + "\r\n" + spotify , function(err) {
+        fs.appendFile("log.txt", "\r\n" + line + "\r\n" + artist + "\r\n" + searchSong + "\r\n" + album + "\r\n" + spotify + "\r\n", function(err) {
 
             if (err) {
             console.log(err);
