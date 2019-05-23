@@ -204,17 +204,16 @@ function doWhat(){
             song(dataArr[1]);
 
         }
-        if(dataArr[0] === "movie-this"){
+        else if(dataArr[0] === "movie-this"){
             movie(dataArr[1]);
         }
-        if(dataArr[0] === "concert-this"){
-            
+        else if(dataArr[0] === "concert-this"){; 
             concert(dataArr[1]);
+            
         }
 
              });
         
       
  } 
-
 
